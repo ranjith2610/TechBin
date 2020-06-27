@@ -106,19 +106,58 @@ class HomePage extends StatefulWidget {
             UserAccountsDrawerHeader(accountName: Text('user name'), accountEmail:Text('useremail@gmail.com'),
             currentAccountPicture:  Image(image: AssetImage("lib/image/google_logo.png"),) ,
             ),
+            
             ListTile(
-              title: Text('logOut'),
-              onTap: () {
-                googleSignIn==true?_googlesignOut():_signOut();
-              },
-            ),
-            ListTile(
-              title: Text('About us'),
+              title: new Row(
+                children:[
+                Icon(Icons.notifications),
+                 Text('Notificatios'),
+                ]
+              ),
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              title: new Row(
+                children:[
+                Icon(Icons.help),
+                 Text('Help'),
+                ]
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+             ListTile(
+              title: new Row(
+                children:[
+                Icon(Icons.info_outline),
+                 Text('About Us'),
+                ]
+              ),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:new Row(
+                children:[
+                Icon(Icons.exit_to_app),
+                 Text('logOut'),
+                ]
+              ),
+              onTap: () {
+                googleSignIn==true?_googlesignOut():_signOut();
               },
             ),
           ],
