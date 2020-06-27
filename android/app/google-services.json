@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1001046857845",
+    "firebase_url": "https://techbin-d1969.firebaseio.com",
+    "project_id": "techbin-d1969",
+    "storage_bucket": "techbin-d1969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001046857845:android:42111255e10bde8e08803c",
+        "android_client_info": {
+          "package_name": "com.example.tech_bin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001046857845-c0desugg0ukckr9841rd0k21hhangkr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5gG_7DtOXby8nGNbHWP_Gt3qo1Hwnra8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001046857845-c0desugg0ukckr9841rd0k21hhangkr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
