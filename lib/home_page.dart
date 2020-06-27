@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tech_bin/about_us.dart';
 import 'auth.dart';
 import 'package:tech_bin/login_page.dart';
+
+import 'help.dart';
 
 
 
@@ -129,10 +132,8 @@ class HomePage extends StatefulWidget {
                 ]
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                //goto help page
+                Help();
               },
             ),
              ListTile(
@@ -143,10 +144,10 @@ class HomePage extends StatefulWidget {
                 ]
               ),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+               
+                //goto aboutUs page
+                AbooutUs();
+               
               },
             ),
             ListTile(
