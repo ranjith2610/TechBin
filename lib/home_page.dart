@@ -1,6 +1,11 @@
+
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tech_bin/about_us.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'auth.dart';
 import 'package:tech_bin/login_page.dart';
 
@@ -16,7 +21,8 @@ class HomePage extends StatefulWidget {
   _Home createState()=> new _Home();
 }
   class _Home extends State<HomePage> {
-    
+     Completer<WebViewController> _controller = Completer<WebViewController>();
+
    int _currentIndex=0;
    final tabs=[
      Center(child:Text('Home'),),
@@ -33,7 +39,7 @@ class HomePage extends StatefulWidget {
         print(e);
       }
     }
-
+    
     void _googlesignOut() async {
       try {
         await widget.auth.signOutGoogle();
@@ -63,7 +69,12 @@ class HomePage extends StatefulWidget {
       return  Future.value(true);
     },
    
-   child:  tabs[_currentIndex],
+   child: WebView(
+        initialUrl: 'https://WWW.indiatoday.in/news.html',
+        javascriptMode: JavascriptMode.unrestricted,
+        
+        
+      ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -96,6 +107,7 @@ class HomePage extends StatefulWidget {
           setState(() {
             _currentIndex=index;
           });
+          
         }, 
         ),
       drawer: Drawer(
@@ -131,10 +143,12 @@ class HomePage extends StatefulWidget {
                  Text('Help'),
                 ]
               ),
-              onTap: () {
-                //goto help page
-                Help();
-              },
+              onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Help(),),
+                  );
+                }
             ),
              ListTile(
               title: new Row(
@@ -143,12 +157,12 @@ class HomePage extends StatefulWidget {
                  Text('About Us'),
                 ]
               ),
-              onTap: () {
-               
-                //goto aboutUs page
-                AbooutUs();
-               
-              },
+              onTap: (){
+                 Navigator.push(
+                             context,
+                             MaterialPageRoute(builder: (context) => AbooutUs()),
+                                 );
+                        }
             ),
             ListTile(
               title:new Row(
@@ -210,12 +224,7 @@ class HomePage extends StatefulWidget {
     );
     
       },*/
-    child:new Center(
-        child: new Text(
-          'Welcome',
-          style: new TextStyle(fontSize: 32.0),
-        ),
-      )
+    
     )
     );
   }*/
