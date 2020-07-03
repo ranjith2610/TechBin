@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tech_bin/about_us.dart';
+import 'package:tech_bin/google_map.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'auth.dart';
 import 'package:tech_bin/login_page.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
   _Home createState()=> new _Home();
 }
   class _Home extends State<HomePage> {
-     Completer<WebViewController> _controller = Completer<WebViewController>();
+    // Completer<WebViewController> _controller = Completer<WebViewController>();
 
    int _currentIndex=0;
    final tabs=[
@@ -51,16 +52,24 @@ class HomePage extends StatefulWidget {
     }
    
     return Scaffold(
-      appBar: AppBar(title: Text('techbin'),
+      appBar: AppBar(
      actions: <Widget>[
-       IconButton(icon: Icon(Icons.center_focus_weak),
+      FlatButton(
+        
+     child:   Row(
+        children:[ 
+           new Text( 'Search DustBin Near Me' ),
+           Icon(Icons.search),
+        ]
+        ),
         onPressed: (){
-         return AlertDialog(
-            title: Text("QR code Scanner"),
-            content: Text("scan code"),
-          );
+         Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GoogleMaps(),),
+                  );
         }
-       )
+        
+       ),
      ],
         ),
       body: WillPopScope(
