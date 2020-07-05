@@ -21,7 +21,7 @@ class _BinMap extends State<GoogleMaps> {
   }
 
   void getCurrentLocation() async {
-     Position res = await Geolocator()
+    Position res = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
     setState(() {
       position = res;
@@ -29,18 +29,18 @@ class _BinMap extends State<GoogleMaps> {
     });
   }
 
-  Set<Marker> _currentLocationMarker() {
-    return <Marker>[
-      Marker(
-        markerId: MarkerId("Current Location"),
-        position: LatLng(position.latitude, position.longitude),
-        icon: BitmapDescriptor.defaultMarker,
-        infoWindow: InfoWindow(
-          title: "Current Location",
-        ),
-      ),
-    ].toSet();
-  }
+//  Set<Marker> _currentLocationMarker() {
+//     return <Marker>[
+//       Marker(
+//         markerId: MarkerId("Current Location"),
+//         position: LatLng(position.latitude, position.longitude),
+//         icon: BitmapDescriptor.defaultMarker,
+//         infoWindow: InfoWindow(
+//           title: "Current Location",
+//         ),
+//       ),
+//     ].toSet();
+//   }
 
   @override
   void initState() {
@@ -54,19 +54,21 @@ class _BinMap extends State<GoogleMaps> {
       appBar: AppBar(
         title: Text('Nearby Bins'),
       ),
-      body:loading==true?Loader():GoogleMap(
-        markers: {dustbin1,dustbin2},
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(position.latitude, position.longitude),
-          zoom: 11.0,
-        ),
-        myLocationEnabled: true,
-        
-      ),
+      body: loading == true
+          ? Loader()
+          : GoogleMap(
+              markers: {dustbin1, dustbin2},
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(position.latitude, position.longitude),
+                zoom: 11.0,
+              ),
+              myLocationEnabled: true,
+            ),
     );
   }
 }
+
 Marker dustbin1 = Marker(
   markerId: MarkerId('dustbin1'),
   position: LatLng(13.536405, 74.789711),

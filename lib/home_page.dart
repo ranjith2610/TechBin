@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -11,28 +9,36 @@ import 'auth.dart';
 import 'package:tech_bin/login_page.dart';
 
 import 'help.dart';
-
-
+import 'qr_code_scan.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({this.auth, this.onSignOut});
   final BaseAuth auth;
   final VoidCallback onSignOut;
-   @override
-  _Home createState()=> new _Home();
+  @override
+  _Home createState() => new _Home();
 }
-  class _Home extends State<HomePage> {
-    // Completer<WebViewController> _controller = Completer<WebViewController>();
 
-   int _currentIndex=0;
-   final tabs=[
-     Center(child:Text('Home'),),
-     Center(child:Text('Chart'),),
-     Center(child:Text('Wallet'),),
-     Center(child:Text('Setting'),),
-   ];
+class _Home extends State<HomePage> {
+  // Completer<WebViewController> _controller = Completer<WebViewController>();
+
+  int _currentIndex = 0;
+  final tabs = [
+    Center(
+      child: Text('Home'),
+    ),
+    Center(
+      child: Text('Chart'),
+    ),
+    Center(
+      child: Text('Wallet'),
+    ),
+    Center(
+      child: Text('Setting'),
+    ),
+  ];
   Widget build(BuildContext context) {
-     void _signOut() async {
+    void _signOut() async {
       try {
         await widget.auth.signOut();
         widget.onSignOut();
@@ -40,7 +46,7 @@ class HomePage extends StatefulWidget {
         print(e);
       }
     }
-    
+
     void _googlesignOut() async {
       try {
         await widget.auth.signOutGoogle();
@@ -48,77 +54,83 @@ class HomePage extends StatefulWidget {
       } catch (e) {
         print(e);
       }
-
     }
-   
+
     return Scaffold(
       appBar: AppBar(
-     actions: <Widget>[
-      FlatButton(
-        
-     child:   Row(
-        children:[ 
-           new Text( 'Search DustBin Near Me' ),
-           Icon(Icons.search),
-        ]
-        ),
-        onPressed: (){
-         Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GoogleMaps(),),
-                  );
-        }
-        
-       ),
-     ],
-        ),
+        actions: <Widget>[
+          OutlineButton(
+              child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: new Text('Search DustBin Near Me'),
+                ),
+                Icon(Icons.search),
+              ]),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GoogleMaps(),
+                  ),
+                );
+              }),
+        ],
+      ),
       body: WillPopScope(
-    onWillPop: (){
-       SystemNavigator.pop();
-      return  Future.value(true);
-    },
-   
-   child: WebView(
-        initialUrl: 'https://WWW.indiatoday.in/news.html',
-        javascriptMode: JavascriptMode.unrestricted,
-        
-        
+        onWillPop: () {
+          SystemNavigator.pop();
+          return Future.value(true);
+        },
+        child: WebView(
+          initialUrl: 'https://WWW.indiatoday.in/news.html',
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
-      ),
+      floatingActionButton: FloatingActionButton.extended(
+          icon: Icon(Icons.camera_alt),
+          label: Text("Scan"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Scanner(),
+              ),
+            );
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 20,
-        
-        items:[
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
             backgroundColor: Colors.blue,
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.insert_chart),
             title: Text('Chart'),
             backgroundColor: Colors.blue,
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet),
             title: Text('Wallet'),
             backgroundColor: Colors.blue,
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             title: Text('Settings'),
             backgroundColor: Colors.blue,
           ),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
-            _currentIndex=index;
+            _currentIndex = index;
           });
-          
-        }, 
-        ),
+        },
+      ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -127,17 +139,18 @@ class HomePage extends StatefulWidget {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(accountName: Text('user name'), accountEmail:Text('useremail@gmail.com'),
-            currentAccountPicture:  Image(image: AssetImage("lib/image/google_logo.png"),) ,
-            ),
-            
-            ListTile(
-              title: new Row(
-                children:[
-                Icon(Icons.notifications),
-                 Text('Notificatios'),
-                ]
+            UserAccountsDrawerHeader(
+              accountName: Text('user name'),
+              accountEmail: Text('useremail@gmail.com'),
+              currentAccountPicture: Image(
+                image: AssetImage("lib/image/google_logo.png"),
               ),
+            ),
+            ListTile(
+              title: new Row(children: [
+                Icon(Icons.notifications),
+                Text('Notificatios'),
+              ]),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -145,43 +158,37 @@ class HomePage extends StatefulWidget {
                 Navigator.pop(context);
               },
             ),
-             ListTile(
-              title: new Row(
-                children:[
-                Icon(Icons.help),
-                 Text('Help'),
-                ]
-              ),
-              onTap: (){
+            ListTile(
+                title: new Row(children: [
+                  Icon(Icons.help),
+                  Text('Help'),
+                ]),
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Help(),),
+                    MaterialPageRoute(
+                      builder: (context) => Help(),
+                    ),
                   );
-                }
-            ),
-             ListTile(
-              title: new Row(
-                children:[
-                Icon(Icons.info_outline),
-                 Text('About Us'),
-                ]
-              ),
-              onTap: (){
-                 Navigator.push(
-                             context,
-                             MaterialPageRoute(builder: (context) => AbooutUs()),
-                                 );
-                        }
-            ),
+                }),
             ListTile(
-              title:new Row(
-                children:[
+                title: new Row(children: [
+                  Icon(Icons.info_outline),
+                  Text('About Us'),
+                ]),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AbooutUs()),
+                  );
+                }),
+            ListTile(
+              title: new Row(children: [
                 Icon(Icons.exit_to_app),
-                 Text('logOut'),
-                ]
-              ),
+                Text('logOut'),
+              ]),
               onTap: () {
-                googleSignIn==true?_googlesignOut():_signOut();
+                googleSignIn == true ? _googlesignOut() : _signOut();
               },
             ),
           ],
@@ -190,8 +197,7 @@ class HomePage extends StatefulWidget {
     );
   }
 
-
- /* @override
+  /* @override
   Widget build(BuildContext context) {
 
    
