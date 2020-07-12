@@ -86,3 +86,29 @@ Marker dustbin2 = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
+Marker dustbin3 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.593435, 74.944917),
+  infoWindow: InfoWindow(title: 'kumbla bus stand'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+
+Marker dustbin4 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.589358, 75.002048),
+  infoWindow: InfoWindow(title: 'Seethangoli'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+
+Marker dustbin5 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.591515, 74.977665),
+  infoWindow: InfoWindow(title: 'Naikap'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
