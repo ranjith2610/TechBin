@@ -120,3 +120,20 @@ Marker dustbin6 = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
+Marker dustbin7 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.869544, 74.864864),
+  infoWindow: InfoWindow(title: 'nantoor'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+
+Marker dustbin8 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.863228, 74.837169),
+  infoWindow: InfoWindow(title: 'statebank busstop'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
