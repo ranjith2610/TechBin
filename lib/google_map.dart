@@ -112,3 +112,11 @@ Marker dustbin5 = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
+Marker dustbin6 = Marker(
+  markerId: MarkerId('dustbin1'),
+  position: LatLng(12.868517, 74.923913),
+  infoWindow: InfoWindow(title: 'adyar garden'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
