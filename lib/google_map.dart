@@ -57,7 +57,16 @@ class _BinMap extends State<GoogleMaps> {
       body: loading == true
           ? Loader()
           : GoogleMap(
-              markers: {dustbin1, dustbin2},
+              markers: {
+                dustbin1,
+                dustbin2,
+                dustbin3,
+                dustbin4,
+                dustbin5,
+                dustbin6,
+                dustbin7,
+                dustbin8
+              },
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
                 target: LatLng(position.latitude, position.longitude),
