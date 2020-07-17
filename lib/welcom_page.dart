@@ -38,36 +38,24 @@ void initState() {
             decoration:  BoxDecoration(
             
       image:  DecorationImage(
-        image:  AssetImage("lib/image/images.jpeg"),
+        image:  AssetImage("lib/image/welcome.jpg"),
         fit: BoxFit.fill
       ),
     ),
-            child:new Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-     
-              children:<Widget>[
-                 new RaisedButton(
-                textColor: Colors.white,
-                color: Colors.green,
-                shape: new RoundedRectangleBorder(
-      borderRadius: new BorderRadius.circular(30.0),
-    ),
-                onPressed:() {
-                 
-           Navigator.of(context).pushNamed('/RootPage');
-          },
-            child: new Text('Get Started', style: new TextStyle(fontSize: 20.0),
-            ),
-           
-            ),
-        
-              ]
-         
-          
+            child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      new PrimaryButton(
+                          text: 'Get Started',
+                          height: 50.0,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/RootPage');
+                          }
+                      ),
+                    ]
             )
-      )
+        )
       )
     );
   }
 }
-  
