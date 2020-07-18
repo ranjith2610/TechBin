@@ -43,6 +43,7 @@ flutter:
     - lib/image/images.jpeg
     - lib/image/google_logo.png
     - lib/image/sigin_page.jpeg
+    - lib/image/welcome.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
