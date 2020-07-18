@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tech_bin/loader.dart';
 abstract class BaseAuth {
-
+  Future<String> currentUseremail();
   Future<String> currentUser();
   Future<String> signIn(String email, String password);
   Future<String> createUser(String name,String email, String password);
@@ -58,7 +58,11 @@ class Auth implements BaseAuth {
     FirebaseUser user = await _firebaseAuth.currentUser();
     return user != null ? user.uid : null;
   }
-
+  
+  Future<String> currentUseremail() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    return user != null ? user?.email : null;
+  }
  
   
 Future<void> signOutGoogle() async{
