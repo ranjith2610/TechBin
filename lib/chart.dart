@@ -12,8 +12,8 @@ class ChartState extends State<Chart> {
   Widget build(BuildContext context) {
     widget.collection == null ? widget.collection = 0 : null;
     return Scaffold(
-      backgroundColor: Colors.blue[300],
-      body: Container(
+     
+      body: Center(
         child: Text("waste thrown is ${widget.collection} kg"),
       ),
     );
