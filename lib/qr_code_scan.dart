@@ -1,8 +1,13 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
-import 'package:flutter/services.dart';
+import 'package:tech_bin/entry.dart';
+import 'package:tech_bin/home_page.dart';
 import 'package:tech_bin/loader.dart';
 import 'package:tech_bin/chart.dart';
+int randomNumber;
 
 class Scanner extends StatefulWidget {
   @override
@@ -10,34 +15,34 @@ class Scanner extends StatefulWidget {
 }
 
 class _ScannerState extends State<Scanner> {
-  String result = "";
+  String result = "h";
+  bool loader = true, succes = false;
+  Random random = new Random();
 
   Future _scanQR() async {
     try {
       var qrResult = await BarcodeScanner.scan();
-      print("reslut $qrResult");
-      setState(() {
-        result = qrResult.rawContent;
-      });
-    } on PlatformException catch (ex) {
-      if (ex.code == BarcodeScanner.cameraAccessDenied) {
+      print("reslut${qrResult.rawContent}..\n");
+      if ((qrResult.type).toString() != 'Cancelled') {
         setState(() {
-          result = "Camera permission was denied";
+          result = qrResult.rawContent;
+          succes = true;
+          randomNumber = random.nextInt(10) + 1;
+          print(randomNumber);
+          print((qrResult.type).toString());
         });
       } else {
-        setState(() {
-          result = "Unknown Error $ex";
-        });
+        succes = false;
+        print(succes);
+        route();
       }
-    } on FormatException {
-      setState(() {
-        result = "You pressed the back button before scanning anything";
-      });
     } catch (ex) {
       setState(() {
-        result = "Unknown $ex";
+        result = "ex";
+        succes = false;
       });
     }
+    loader = false;
   }
 
   @override
@@ -46,17 +51,52 @@ class _ScannerState extends State<Scanner> {
     _scanQR();
   }
 
+  startTime() async {
+    var duration = new Duration(seconds: 3);
+    return new Timer(duration, route);
+  }
+
+  route() {
+    if (succes == true) {
+      print(randomNumber);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => EntryPage(
+                    selectedIndex: 2,
+                  )));
+    } else {
+      print("home");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EntryPage(
+            selectedIndex: 0,
+          ),
+        ),
+      );
+    }
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold(
-            appBar: AppBar(
-              title: Text('Qr code Scanning'),
-            ),
-            body: Center(
-              child: Text(
-                result,
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-          );
+    switch (loader) {
+      case true:
+        return Loader();
+      case false:
+        startTime();
+        return Scaffold(
+          body: Center(
+            child: succes == true
+                ? Text(
+                    "scan Successfull!!!!!!!!",
+                    style: TextStyle(fontSize: 20),
+                  )
+                : Text(
+                    "scan unSuccessfull!!!!!!!!$result",
+                    style: TextStyle(fontSize: 20),
+                  ),
+          ),
+        );
+    }
   }
 }
