@@ -44,10 +44,12 @@ class _EntryPageState extends State<EntryPage> {
 
     final _widgetOptions = [
       new HomePage(),
-      Center(
-        child: Text('Chart'),
+      new Chart(
+        collection: randomNumber,
       ),
-      new Wallet(collection: randomNumber,),
+      Center(
+        child: Text('Wallet'),
+      ),
       Center(
         child: Text('Setting'),
       ),
